@@ -8,7 +8,7 @@
 #include <linux/device.h>
 
 #define ENTER() printk("\n###### In %s ######\n", __func__);
-
+#define ENTER_1() printk("\n###### In %s : %d ######\n", __func__, __LINE__);
 struct omap2_mcspi {
     /* for providing a character device access */
     struct class *spi_class;

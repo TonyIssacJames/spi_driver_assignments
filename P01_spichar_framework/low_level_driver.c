@@ -34,13 +34,19 @@ int spi_rw(struct omap2_mcspi *mcspi, char *buff)
 static int __init omap_spi_init_driver(void)
 {
     // TODO 1: Initialize the character driver interface
-
+    if(chrdev_init(&mcspi))
+    {
+    	printk(KERN_INFO "FAIL in spi driver registration\n");
+    }
+	printk(KERN_INFO "Namaskar: spi driver registered\n");
     return 0;
 }
 
 static void __exit omap_spi_exit_driver(void)
 {
+	chrdev_exit();
     // TODO 2: De-initialize the character driver interface
+ 	printk(KERN_INFO "Alvida: spi driver unregistered\n");   
 }
 
 module_init(omap_spi_init_driver);
